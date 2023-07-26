@@ -1,0 +1,134 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Import other styles
+@import 'styles/bike-common-styles.scss';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+// Custom color primary pallet:
+/* For use in src/lib/core/theming/_palette.scss */
+$custom-gold: (
+    50 : #f7f2e0,
+    100 : #ecdeb3,
+    200 : #dfc880,
+    300 : #d2b14d,
+    400 : #c9a126,
+    500 : #bf9000,
+    600 : #b98800,
+    700 : #b17d00,
+    800 : #a97300,
+    900 : #9b6100,
+    A100 : #ffe6c6,
+    A200 : #ffd093,
+    A400 : #ffba60,
+    A700 : #ffaf47,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$custom-grey: (
+    50 : #e1e2e2,
+    100 : #b5b6b6,
+    200 : #848585,
+    300 : #535454,
+    400 : #2e3030,
+    500 : #090b0b,
+    600 : #080a0a,
+    700 : #060808,
+    800 : #050606,
+    900 : #020303,
+    A100 : #a6a6a6,
+    A200 : #8c8c8c,
+    A400 : #737373,
+    A700 : #666666,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+$ohmybike-admin-portal-primary: mat.define-palette($custom-gold);
+$ohmybike-admin-portal-accent: mat.define-palette($custom-grey, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$ohmybike-admin-portal-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ohmybike-admin-portal-theme: mat.define-light-theme((
+  color: (
+    primary: $ohmybike-admin-portal-primary,
+    accent: $ohmybike-admin-portal-accent,
+    warn: $ohmybike-admin-portal-warn,
+  )
+));
+
+// Define Dark Theme
+$ohmybike-admin-portal-theme-dark: mat.define-dark-theme((
+  color: (
+    primary: $ohmybike-admin-portal-primary,
+    accent: $ohmybike-admin-portal-accent,
+    warn: $ohmybike-admin-portal-warn,
+  ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($ohmybike-admin-portal-theme);
+
+.theme-dark {
+  @include mat.all-component-colors($ohmybike-admin-portal-theme-dark);
+}
+
+.theme-light {
+  @include mat.all-component-colors($ohmybike-admin-portal-theme);
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

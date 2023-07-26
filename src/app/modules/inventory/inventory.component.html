@@ -1,0 +1,22 @@
+<div class="bike-container">
+    <h1>Our Awesome Bikes...</h1>
+    <div *ngIf="bikeList$ | async as bikes; else loadingSpinner">
+        <div class="bike-card-list">
+          <!-- Empty slot card for adding a new bike -->
+          <div class="add-bike-card" (click)="openAddBikeDialog()">
+            <button mat-button>
+              <mat-icon>add_circle</mat-icon>
+              <div>Add New Bike</div>
+            </button>
+          </div>
+          <!-- Display the inventory bikes  -->
+          <app-bike-card *ngFor="let bike of bikeList$ | async" [bike]="bike"></app-bike-card>
+        </div>
+    </div>
+    <!-- Loading spinner template -->
+    <ng-template #loadingSpinner>
+        <div class="spinner-container">
+          <mat-spinner color="primary"></mat-spinner>
+        </div>
+    </ng-template>
+</div>

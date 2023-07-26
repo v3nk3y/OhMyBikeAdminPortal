@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container">
+    <!-- SIDENAV -->
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="false">
+        <mat-toolbar>Menu</mat-toolbar>
+            <mat-nav-list>
+            <ng-container *ngIf="!(authService.isLoggedIn$ | async)">
+                <!-- Show "Admin Login" link if user is not logged in -->
+                <a mat-list-item routerLink="/admin-login">🔑 Admin Login</a>
+            </ng-container>
+            <ng-container *ngIf="authService.isLoggedIn$ | async">
+                <!-- Show links if user is logged in -->
+                <a mat-list-item routerLink="/home" (click)="drawer.close()">🏠 Home</a>
+                <a mat-list-item routerLink="/inventory" (click)="drawer.close()">📚 Inventory</a>
+                <a mat-list-item (click)="logout()">🔒 Logout</a>
+            </ng-container>
+        </mat-nav-list>
+    </mat-sidenav>
+    
+    <!-- TOP TOOLBAR-->
+    <mat-sidenav-content>
+        <mat-toolbar>
+        <button 
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <!-- Dark Mode Toggle-->
+        <button mat-icon-button (click)="toggleTheme()">
+            <mat-icon>light_mode</mat-icon>
+        </button>
+        <span class="logo" routerLink="/home">OH MY BIKE</span>
+        <span class="fill-space"></span>
+        <div *ngIf="!(isHandset$ | async)">
+            <ng-container *ngIf="authService.isLoggedIn$ | async">
+                <!-- Show links if user is logged in -->
+                <a mat-button routerLink="/inventory">📚 Inventory</a>
+                <a mat-button (click)="logout()">🔒 Logout</a>
+            </ng-container>
+            <ng-container *ngIf="!(authService.isLoggedIn$ | async)">
+                <!-- Show "Admin Login" link if user is not logged in -->
+                <a mat-button routerLink="/admin-login">🔑 Admin Login</a>
+            </ng-container>
+        </div>
+        <!-- DROPDOWN MENU -->
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a mat-menu-item href="mailto:lots_framers.0y@icloud.com?subject=Regarding%20OMB%20App">
+                <i>📤</i>
+                <span>Email Developer</span>
+            </a>
+        </mat-menu>
+        </mat-toolbar>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

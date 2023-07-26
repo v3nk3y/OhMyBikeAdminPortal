@@ -1,0 +1,35 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-card {
+  width: 400px;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  margin-bottom: 24px;
+}
+
+/* Add bottom padding to mat-card-header */
+.mat-mdc-card-header {
+  padding-bottom: 16px;
+}
+
+.visibility-icon {
+  opacity: 0.5;
+}
+
+/* Remove background color for Chrome autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px whitesmoke inset;
+}

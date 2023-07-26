@@ -1,0 +1,40 @@
+.bike-container {
+    text-align: center;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bike-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.add-bike-card {
+    width: 300px;
+    height: 500px;
+    max-height: 500px;
+    margin: 16px;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add a dashed border to distinguish it as the "Add Bike" card */
+    border: 1px dashed #ccc;
+}
+
+.add-bike-card:hover {
+    /* Apply the raised effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-bike-card button {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    color: #ccc;
+    height: 100%;
+    width: 100%;
+}

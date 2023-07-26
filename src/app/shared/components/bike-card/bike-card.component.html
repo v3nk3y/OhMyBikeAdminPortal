@@ -1,0 +1,32 @@
+<mat-card class="bike-card">
+  <div class="bike-image-container">
+    <img [src]="bike.picture" alt="Bike Image" class="bike-image">
+  </div>
+  <mat-card-title class="bike-title">{{ bike.title }}</mat-card-title>
+  <mat-card-content class="bike-description">{{ bike.description }}</mat-card-content>
+  <mat-card-content class="bike-properties">
+    <div class="bike-property">
+      <span class="bike-property-label">Quantity:</span>
+      <span class="bike-property-value"> {{ bike.qty }}</span>
+    </div>
+    <div class="bike-property">
+      <span class="bike-property-label">Price:</span>
+      <span class="bike-property-value"> ${{ bike.price }}</span>
+    </div>
+    <div class="bike-property">
+      <span class="bike-property-label">Type:</span>
+      <span class="bike-property-value"> {{ bike.type }}</span>
+    </div>
+    <div class="bike-property">
+      <span class="bike-property-label">Rating:</span>
+      <span class="bike-property-value">
+        <!-- Loop over the star icons and set the value for each star -->
+        <mat-icon *ngFor="let star of getStarRating(bike.rating)">{{ star }}</mat-icon>
+      </span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="accent" (click)="editBike()">Edit</button>
+    <button mat-button color="warn" (click)="deleteBike()">Delete</button>
+  </mat-card-actions>
+</mat-card>
