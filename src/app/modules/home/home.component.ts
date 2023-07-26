@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private randomQuoteService : RandomQuoteService) {}
 
   ngOnInit(): void {
-    // this.getQuote();
+    this.getQuote();
   }
 
   getQuote(): void {
